@@ -1,6 +1,6 @@
-# Andino Lora
+# Andino IO
 
-Homepage of [Andino Lora](https://andino.systems/andino-lora/)
+Homepage of [Andino IO](https://andino.systems/andino-io/)
 
 Tabe of Content
    
@@ -16,26 +16,26 @@ Tabe of Content
 10. [OLED Display](README.md#oled-display)
 11. [RTC DS3231](README.md#rtc-ds3231)
 12. [GPIO Mapping](README.md#gpio-mapping)
-12. [Use the SIMCOM 800L for 2G / GPRS](README.md#use-the-simcom-800l-for-2g-/-gprs)
+12. [Andino IO with WWAN - Use 2G / 4G](README.md#andino-io-with-wwan)
 
 ## Documentation
 
-![Andino Lora - Raspberry Pi on DIN Rail - Front view](andino-lora-top-small.png)
-![Andino X2 - Raspberry Pi on DIN Rail - PCB Overview](andino-lora-pcb-connectors.png)
-![Andino X2 - Raspberry Pi on DIN Rail - Block Diagram](andino-lora-blockdiagram.png)
+![Andino IO - Raspberry Pi on DIN Rail - Front view](andino-io-top-small.png)
+![Andino IO - Raspberry Pi on DIN Rail - PCB Overview](andino-io-pcb-connectors.png)
+![Andino IO - Raspberry Pi on DIN Rail - Block Diagram](andino-io-blockdiagram.png)
 ----------
 
 ----------
 ### Prepare the Debian
-1. Release the ttyAMA0 from getty and asign it to GIO14, GPIO15
-2. Add a driver for the SPI UART
+1. Release the ttyAMA0 from getty and asign it to GIO14, GPIO15 (used for the Modem) 
+2. Add a driver for the SPI UART (RS232 and RS485)
 3. Add a driver for the CAN Bus
 4. Add a driver for the Temperatur Sensor
 
 #### Download the Driver for the SPI UART
 
     cd ~/
-    wget https://github.com/andino-systems/Andino-Lora/raw/master/sc16is752-spi0-ce1.dtbo
+    wget https://github.com/andino-systems/Andino-IO/raw/master/sc16is752-spi0-ce1.dtbo
     sudo cp sc16is752-spi0-ce1.dtbo /boot/overlays/
     sudo nano /boot/config.txt
 
@@ -54,7 +54,7 @@ dwc_otg.lpm_enable=0 **console=serial0,115200 console=tty1** root=/dev/mmcblk0p2
 add this at the end of the file..
 
 	# -----------------------
-	# Andino LoRa from here
+	# Andino IO from here
 	# -----------------------
 	
 	# SPI on
@@ -98,12 +98,13 @@ After that reboot. Now we are ready to go!
 
 ### Digital Inputs
 The digital inputs are connected to the GPIO:
-Input1:	GPIO13
-Input2:	GPIO19
-Input3:	GPIO16
-Input4:	GPIO26
-Input5:	GPIO20
-Input6:	GPIO21
+
+- Input1:	GPIO13
+- Input2:	GPIO19
+- Input3:	GPIO16
+- Input4:	GPIO26
+- Input5:	GPIO20
+- Input6:	GPIO21
 
 The Inputs are calculated for ****24 Volt**** Input.
 Normaly a signal of 24 Volt is applied to Pin 2 and the Ground to Pin 3. (active Mode)
@@ -112,29 +113,30 @@ By closing the JumperX the Inputs can be driven in passive Mode or Dry Contact.
 This means a Switch / Relaycontact can be conneted between Pin 3 and Pin 2.
  
 
-![Andino Lora - digital input schematics](digital-input-schematics.png)
+![Andino IO - digital input schematics](digital-input-schematics.png)
 
-![Andino Lora - digital input configuration](andino-lora-digital-input-configuration.png)
+![Andino IO - digital input configuration](andino-io-digital-input-configuration.png)
 ----------
 ### Relay Output
 The Relay are controlled by the GPIO:
-Relay1:	GPIO5
-Relay2:	GPIO6
-Relay3:	GPI12
 
-	# Export
-	sudo echo "5" > /sys/class/gpio/export
-	sudo echo "6" > /sys/class/gpio/export
-	sudo echo "12" > /sys/class/gpio/export
-	# Set to output
-	sudo echo "out" > /sys/class/gpio/gpio5/direction
-	sudo echo "out" > /sys/class/gpio/gpio6/direction
-	sudo echo "out" > /sys/class/gpio/gpio12/direction
-	# Switch on
-	echo "1" > /sys/class/gpio/gpio5/value
-	echo "1" > /sys/class/gpio/gpio6/value
-	echo "1" > /sys/class/gpio/gpio12/value
+- Relay1:	GPIO5
+- Relay2:	GPIO6
+- Relay3:	GPI12
 
+		# Export
+		sudo echo "5" > /sys/class/gpio/export
+		sudo echo "6" > /sys/class/gpio/export
+		sudo echo "12" > /sys/class/gpio/export
+		# Set to output
+		sudo echo "out" > /sys/class/gpio/gpio5/direction
+		sudo echo "out" > /sys/class/gpio/gpio6/direction
+		sudo echo "out" > /sys/class/gpio/gpio12/direction
+		# Switch on
+		echo "1" > /sys/class/gpio/gpio5/value
+		echo "1" > /sys/class/gpio/gpio6/value
+		echo "1" > /sys/class/gpio/gpio12/value
+    
 The Relays can drive 230V and up to 5 ampere. 
 There a no Fuses at the relay contacts!!
 
@@ -144,9 +146,9 @@ The Power Fail Input can be used to inform the Raspberry about a Mains Power los
 This can be done by a Switch- / Relay-Contact.
 Just bridge Pin1 and Pin2 to signal Power good/fail.
 
-Fail Input:	GPI18
+- Fail Input:	GPI18
 
-![Andino Lora - Power Fail Input](andino-lora-power-fail-input.png)
+![Andino IO - Power Fail Input](andino-io-power-fail-input.png)
   
 
 [This feature can be used together with the Andino UPS](https://andino.systems/andino-ups/)  
@@ -229,7 +231,7 @@ In RS485 Mode the transmitter can be switched on either by the RTS signal or aut
 
 #### Jumper
 
-![RS485 Jumper](RS485-jumper.png)
+![RS485 Jumper](rs485-jumper.png)
 
 Send in manual mode
 
@@ -288,10 +290,10 @@ The Modem is connected to the internal UART of the Raspberry Pi.
 
 This Port has to configured to GPIO14 and GPIO15 (see Prepare Debian)
  
-GPIO14 (TxD) 
-GPIO15 (RxD)
-GPIO17 (RTS - output)
-GPIO27 (CTS - input)
+- GPIO14 (TxD) 
+- GPIO15 (RxD)
+- GPIO17 (RTS output / also used to Reset the Modem)
+- GPIO27 (CTS input)
 
 ![Modem Connector](k20-gsm-plug.png)
 
@@ -335,7 +337,7 @@ and comment any other disp..
 
 	python /home/pi/Adafruit_Python_SSD1306/examples/stats.py
    
-#### RTC DS3231
+### Real-Time-Clock RTC DS3231
 
 Execute this
 
@@ -403,11 +405,11 @@ Place this script at /home/pi/bin/ntp2hwclock.sh (for example, see above)
 
 ### GPIO Mapping
 
-![GPIO Mapping of the Andino Lora](andino-lora-io-mapping.png)
+![GPIO Mapping of the Andino IO](andino-io-mapping.png)
 
-### Use the SIMCOM 800L for 2G / GPRS
+## Andino IO with WWAN
 
-[How to use Raspberry Pi with SI8900 GSM/GPRS](Sim800.md)  
+[Use the SimCom 7600E (2G/3G/4G) or SimCom 800L (2G/GPRS)](andino-io-2g-4g.md)  
 
 
 ## Useful Links   
@@ -415,7 +417,4 @@ Place this script at /home/pi/bin/ntp2hwclock.sh (for example, see above)
 [How to use internet using PPPD and SIM800 GSM addon?](https://raspberrypi.stackexchange.com/questions/44597/how-to-use-internet-using-pppd-and-sim800-gsm-addon )  
 [1]:http://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf?
 
-### Schematics
-
-[Here are the Schematics of the Andino X2](schematic-andino-X2.pdf)
 
