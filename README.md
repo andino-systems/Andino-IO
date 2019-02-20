@@ -16,7 +16,8 @@ Tabe of Content
 10. [OLED Display](README.md#oled-display)
 11. [RTC DS3231](README.md#rtc-ds3231)
 12. [GPIO Mapping](README.md#gpio-mapping)
-12. [Using the SIM800L and SIM7600 with PPP](README.md#andino-io-with-wwan)
+12. [Using the SIM800L and SIM7600 with PPP](README.md#using-the-sim800l-and-sim7600-with-ppp)
+12. [Using the SIM7600 with QMI Interface](README.md#using-the-sim7600-with-qmi-interface)
 
 ## Documentation
 
@@ -419,7 +420,7 @@ Place this script at /home/pi/bin/ntp2hwclock.sh (for example, see above)
 
 ## Using the SIM7600 with QMI Interface
 
-[Use the SimCom 7600E (3G/4G) with QMI]((https://github.com/andino-systems/Andino-IO/tree/master/qmi/README.MD) )  
+[Use the SimCom 7600E (3G/4G) with QMI](https://github.com/andino-systems/Andino-IO/tree/master/qmi/README.MD)  
 
 
 
