@@ -16,7 +16,7 @@ Tabe of Content
 10. [OLED Display](README.md#oled-display)
 11. [RTC DS3231](README.md#rtc-ds3231)
 12. [GPIO Mapping](README.md#gpio-mapping)
-12. [Andino IO with WWAN - Use 2G / 4G](README.md#andino-io-with-wwan)
+12. [Using the SIM800L and SIM7600 with PPP](README.md#andino-io-with-wwan)
 
 ## Documentation
 
@@ -405,16 +405,22 @@ Place this script at /home/pi/bin/ntp2hwclock.sh (for example, see above)
 
 ### GPIO Mapping
 
+
 ![GPIO Mapping of the Andino IO](andino-io-mapping.png)
 
-## Andino IO with WWAN
+----
 
-[Use the SimCom 7600E (2G/3G/4G) or SimCom 800L (2G/GPRS)](andino-io-2g-4g.md)  
+# WAN Communication
+
+## Using the SIM800L and SIM7600 with PPP
+
+[Use the SimCom 7600E (2G/3G/4G) or SimCom 800L (2G/GPRS)](https://github.com/andino-systems/Andino-IO/tree/master/ppp/README.MD)  
 
 
-## Useful Links   
-[How to use Raspberry Pi with SIM900 GSM/GPRS add-on with bash](https://www.bashpi.org/?page_id=459 )  
-[How to use internet using PPPD and SIM800 GSM addon?](https://raspberrypi.stackexchange.com/questions/44597/how-to-use-internet-using-pppd-and-sim800-gsm-addon )  
-[1]:http://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf?
+## Using the SIM7600 with QMI Interface
+
+[Use the SimCom 7600E (3G/4G) with QMI]((https://github.com/andino-systems/Andino-IO/tree/master/qmi/README.MD) )  
+
+
 
 
