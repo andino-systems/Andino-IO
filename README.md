@@ -298,6 +298,44 @@ This Port has to configured to GPIO14 and GPIO15 (see Prepare Debian)
 
 ![Modem Connector](k20-gsm-plug.png)
 
+#### Testing the modem and porgramming(/scripting) with it
+
+You can find some example python scripts in this folder of the repository. You can test the modem with a simple python script: 
+
+```python
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
+import time
+import serial
+
+def send(data):
+   p = serial.Serial("/dev/ttyAMA0" , 57600 )
+   p.setRTS(False)
+   time.sleep(2)
+   p.write(data+"\x0d\x0a")
+   data.rstrip()
+   print(data)
+   time.sleep(2)
+   rdata=p.readline()
+   rdata=rdata[:-1]
+   print rdata
+
+send("sys reset")
+
+time.sleep(1)
+
+send("mac get deveui")
+```
+
+And then, in a new terminal, you can get the eui from the device:
+```bash
+$ python get-deveui.py
+sys reset
+RN2483 1.0.4 Oct 12 2017 14:59:25
+mac get deveui
+0004A30B002544A2
+```
+
 ----------
 ### OLED Display
 
