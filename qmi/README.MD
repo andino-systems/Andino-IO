@@ -30,7 +30,7 @@ Udate to the latest Kernel and apply changes.
 
 Install QMI Tools
 
-	apt-get install libqmi-utils
+	apt-get install libqmi-utils udhcpc
 	reboot
 
 This installs two main utilities (qmi-cli tool and qmi-network helper script) these are used for interaction with the modem (see man qmi-cli for more details)
