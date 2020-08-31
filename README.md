@@ -1,4 +1,4 @@
-This is the old repository of the Andino-X1. For up-to-date documentation, please refer to the [Andino-IO section](https://github.com/andino-systems/Andino/tree/master/Andino-IO) in the new Andino repository.
+This is the old repository of the Andino-IO. For up-to-date documentation, please refer to the [Andino-IO section](https://github.com/andino-systems/Andino/tree/master/Andino-IO) in the new Andino repository.
 ====
 
 
