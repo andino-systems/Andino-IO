@@ -1,9 +1,3 @@
-This is the old repository of the Andino-IO. For up-to-date documentation, please refer to the [Andino-IO section](https://github.com/andino-systems/Andino/tree/master/Andino-IO) in the new Andino repository.
-====
-
-
-------
-
 # Andino IO
 
 Homepage of [Andino IO](https://andino.systems/andino-io/)
@@ -99,7 +93,7 @@ add this at the end of the file..
 	# 2. SPI-UART on SPI 0.1
 	# /dev/ttySC0 = RS485
 	# /dev/ttySC1 = RS232
-	dtoverlay=sc16is752-spi0-ce1
+      dtoverlay=sc16is752-spi0-ce1,int_pin=24,xtal=11059200
 	
 	# DS1820 Temp sensor
 	# cat   /sys/bus/w1/devices/28-00000a990ab5/w1_slave
