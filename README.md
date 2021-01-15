@@ -93,7 +93,7 @@ add this at the end of the file..
 	# 2. SPI-UART on SPI 0.1
 	# /dev/ttySC0 = RS485
 	# /dev/ttySC1 = RS232
-      dtoverlay=sc16is752-spi0-ce1,int_pin=24,xtal=11059200
+	dtoverlay=sc16is752-spi0-ce1,int_pin=24,xtal=11059200
 	
 	# DS1820 Temp sensor
 	# cat   /sys/bus/w1/devices/28-00000a990ab5/w1_slave
