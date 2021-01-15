@@ -44,7 +44,14 @@ Tabe of Content
     cd ~/
     wget https://github.com/andino-systems/Andino-IO/raw/master/sc16is752-spi0-ce1.dtbo
     sudo cp sc16is752-spi0-ce1.dtbo /boot/overlays/
-    sudo nano /boot/config.txt
+
+Or compile the source
+
+    cd ~/
+    wget https://github.com/andino-systems/Andino-IO/raw/master/sc16is752-spi0-ce1.dts
+    wget https://github.com/andino-systems/Andino-IO/raw/master/makedts.dts
+    chmod +x ./makedts.sh
+    sudo ./makedts.sh
 
 
 Stop getty on serial0:   
@@ -65,7 +72,7 @@ add this at the end of the file..
 	# -----------------------
 	
 	# SPI on
-	dtparam=spi=on dtoverlay=spi0-cs,cs0_pin=8,cs1_pin=7
+	dtparam=spi=on
 	
 	# I2C on
 	dtparam=i2c_arm=on
@@ -75,7 +82,7 @@ add this at the end of the file..
 	# i2cdetect -y 1
 	dtoverlay=i2c-rtc,ds3231
 	
-	# CAN
+	# CAN on SPI0.0
 	# sudo apt-get install can-utils
 	# sudo ip link set can0 up type can bitrate 125000
 	# sudo ifconfig
@@ -89,7 +96,7 @@ add this at the end of the file..
 	dtoverlay=pi3-disable-bt-overlay
 	dtoverlay=pi3-miniuart-bt
 	
-	# 2. UART
+	# 2. SPI-UART on SPI 0.1
 	# /dev/ttySC0 = RS485
 	# /dev/ttySC1 = RS232
 	dtoverlay=sc16is752-spi0-ce1
